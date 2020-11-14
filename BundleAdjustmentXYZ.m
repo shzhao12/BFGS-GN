@@ -6,22 +6,6 @@ clear;
 
 
 %% Input Path
-% szCal = 'Zurich135\CalibZurich.txt';
-% szCam = 'Zurich135\Pose135Normal.txt';
-% szFea = 'Zurich135\Feature135.txt';
-% szXYZ = 'Zurich135\XYZ135.txt'; 
-% % 
-%   szCal = 'Zurich5\CalibZurich.txt';
-%   szCam = 'Zurich5\Pose5Normal.txt';
-%   szFea = 'Zurich5\Feature5.txt';
-%   szXYZ = 'Zurich5\XYZ5.txt';
-%  
- 
-% szCal = 'Sim10-10\CalibZurich.txt';
-% szCam = 'Sim10-10\Camera.txt';
-% szFea = 'Sim10-10\Feature.txt';
-% % szXYZ = 'Sim10-10\XYZSim.txt'; 
-% szXYZ = 'Sim10-10\Copy_of_XYZSim.txt'; 
 % % % m      
  szCal = 'DunHuansparce\cal63.txt';
  szCam = 'DunHuansparce\Cam63.txt';
@@ -35,15 +19,6 @@ clear;
 % szFea = 'villagesparse\Feature900ssssparse.txt';
 % szXYZ = 'villagesparse\outpoints.txt';
 
-% szCal = 'NewCollege\cal3500.txt';
-% szCam = 'NewCollege\Cam3500.txt';
-% szFea = 'NewCollege\Feature3500.txt';%1Feature_tst.txt2match_FINE.txt
-% szXYZ = 'NewCollege\XYZ3500.txt'; %2match_outPnts.txt
-
-%  szCal = 'Malaga\Malaga\cal170.txt';
-%  szCam = 'Malaga\Malaga\Cam170.txt';
-%  szFea = 'Malaga\Malaga\Feature170.txt';%1Feature_tst.txt2match_FINE.txt
-%  szXYZ = 'Malaga\Malaga\outPnts.txt'; %2match_outPnts.txt
 % %  
 %   szCal = 'Malagasparce\cal170.txt';
 %   szCam = 'Malagasparce\Cam170.txt';
@@ -64,30 +39,6 @@ clear;
 % szFea = 'college468\FeatureSsparse.txt';%1Feature_tst.txt2match_FINE.txt
 % szXYZ = 'college468\outpoint-s.txt'; 
 
-%  szCal ='Vaihingen\cal20.txt';
-%  szCam = 'Vaihingen\Cam20.txt';
-%  szFea = 'Vaihingen\Feature20.txt';%1Feature_tst.txt2match_FINE.txt
-%  szXYZ = 'Vaihingen\vaihingen.txt'; 
-
-% % %Ê¹ÓÃqrÊı¾İ
-% szCal ='Toronto\cal13.txt';
-% szCam = 'Toronto\Cam13.txt';
-% szFea = 'Toronto\Feature13sparse.txt';%1Feature_tst.txt2match_FINE.txt
-% szXYZ = 'Toronto\outpoints.txt'; 
-% % % % 
-%   szCal = '1cali.txt';
-%   szCam = '1Poseca.txt';
-%      szFea = '1Feature_tst.txt';%2match_FINE.txt
-%      szXYZ = '1outPoint.txt'; %  
-%       szFea = '2match_FINE.txt';%1Feature_tst.txt2match_FINE.txt
-%       szXYZ = '2match_outPnts.txt'; %  1outPoint.txt
-% % %   
-
-% szCal = 'matlab\calib.txt';
-% szCam = 'matlab\cam.txt';
-% szFea = 'matlab\projs.txt';
-% szXYZ = 'matlab\pts.txt'; 
-
 LSMode =4;     %1--GN, 2--LM  3--EBFGS 4-BFGS
 
 xVector.u = []; xVector.PID = []; xVector.FID = [];
@@ -95,8 +46,8 @@ PVector.Pose = []; PVector.Feature = []; PVector.ID = []; PVector.Info = sparse(
 PVector.Num = [];
 
 %%%%%%%%%%%
-%xVectorÀïÃæ·ÅµÄÊÇ  Feature   ÕæÖµ
-%pVectorÀïÃæ·ÅµÄÊÇ  R t K XYZ Í¨¹ıpVector¼´¿É µÃµ½¹Û²âÖµ
+%xVectoré‡Œé¢æ”¾çš„æ˜¯  Feature   çœŸå€¼
+%pVectoré‡Œé¢æ”¾çš„æ˜¯  R t K XYZ é€šè¿‡pVectorå³å¯ å¾—åˆ°è§‚æµ‹å€¼
 %%%%%%%%%
 %% Load Pose
 K = textread(szCal);
@@ -104,12 +55,12 @@ PoseInit = load(szCam);
 [a, b] = size(PoseInit);
 ImageNum=a;
 for i=1:ImageNum;
-    PVector.Pose(6*(i-1)+1:6*i,1) = PoseInit(i,1:6)';  %%%ËùÓĞµÄpose·ÅÔÚPVectorµÄPoseÖĞ
+    PVector.Pose(6*(i-1)+1:6*i,1) = PoseInit(i,1:6)';  %%%æ‰€æœ‰çš„poseæ”¾åœ¨PVectorçš„Poseä¸­
 end;
 
 %% Load Features
 clc;
-fidin=fopen(szFea);                               % ´ò¿ªtest2.txtÎÄ¼ş  
+fidin=fopen(szFea);                               % æ‰“å¼€test2.txtæ–‡ä»¶  
 ptno = 1;
 maxObj = -1;
 while ~feof(fidin)
