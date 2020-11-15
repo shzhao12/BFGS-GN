@@ -1,2 +1,2 @@
 # BFGS-GN
-A Solution Method on Gauss-Newton Bundle Adjustment Based on BFGS Correction
+A BFGS-Corrected Gauss-Newton Solver for Bundle Adjustment
